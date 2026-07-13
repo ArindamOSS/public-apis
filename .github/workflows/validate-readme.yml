@@ -47,6 +47,7 @@ jobs:
           HEAD_SHA: ${{ github.event.pull_request.head.sha }}
           BASE_REPO: ${{ github.event.pull_request.base.repo.full_name }}
           BASE_SHA: ${{ github.event.pull_request.base.sha }}
+          PR_AUTHOR: ${{ github.event.pull_request.user.login }}
         run: node scripts/validate-pr-readme.js README.md "$REPO" "$PR_NUMBER" validation-comment.md
 
       - name: Add README validation comment
@@ -58,7 +59,7 @@ jobs:
             const marker = "<!-- readme-diff-validation -->";
             const body = fs.existsSync("validation-comment.md")
               ? fs.readFileSync("validation-comment.md", "utf8")
-              : `${marker}\n### README validation\n\n❌ Validation could not complete. Check the workflow logs.`;
+              : `${marker}\n### Contribution check\n\nHi @${context.payload.pull_request.user.login},\n\nThanks for contributing! We could not complete the automated check this time. Please review the workflow logs for details, or wait for a maintainer to take a look.`;
             const issue_number = context.issue.number;
             const comments = await github.paginate(github.rest.issues.listComments, {
               owner: context.repo.owner,

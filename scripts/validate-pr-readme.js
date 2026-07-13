@@ -90,6 +90,13 @@ function errorKey(error) {
   return error.replace(/^L\d+:\s*/, "");
 }
 
+function escapeHtml(value) {
+  return value
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;");
+}
+
 function subtractBaselineErrors(proposedErrors, baselineErrors) {
   const baselineCounts = new Map();
   for (const error of baselineErrors) {
@@ -106,16 +113,31 @@ function subtractBaselineErrors(proposedErrors, baselineErrors) {
   });
 }
 
-function formatComment(errors, touchedReadme) {
+function formatError(error, readmeUrl = "README.md") {
+  const parsed = /^L(\d+):\s*(.*)$/.exec(error);
+  if (!parsed) return `- <code>${escapeHtml(error)}</code>`;
+
+  const [, lineNumber, message] = parsed;
+  return `- [README.md line ${lineNumber}](${readmeUrl}#L${lineNumber}): <code>${escapeHtml(message)}</code>`;
+}
+
+function greeting(author) {
+  return author ? `Hi @${author},` : "Hi there,";
+}
+
+function formatComment(errors, touchedReadme, author = "", links = {}) {
+  const readmeUrl = links.readmeUrl || "README.md";
+  const contributingUrl = links.contributingUrl || "CONTRIBUTING.md";
   if (!touchedReadme) {
-    return `${COMMENT_MARKER}\n### README validation\n\nNo README changes to validate.`;
+    return `${COMMENT_MARKER}\n### Contribution check\n\n${greeting(author)}\n\nThanks for contributing! This pull request does not contain any README changes that need to be checked.`;
   }
   if (errors.length === 0) {
-    return `${COMMENT_MARKER}\n### README validation\n\n✅ Changed README lines passed validation.`;
+    return `${COMMENT_MARKER}\n### Contribution check\n\n${greeting(author)}\n\nThanks for contributing! ✅ Your README changes follow our contribution guidelines. One of our maintainers will review your pull request shortly. Thank you for your patience.`;
   }
 
-  const details = errors.map((error) => `- \`${error.replace(/`/g, "\\`")}\``).join("\n");
-  return `${COMMENT_MARKER}\n### README validation\n\n❌ Found ${errors.length} issue(s) in the changed README lines:\n\n${details}`;
+  const details = errors.map((error) => formatError(error, readmeUrl)).join("\n");
+  const issueLabel = errors.length === 1 ? "item" : "items";
+  return `${COMMENT_MARKER}\n### Contribution check\n\n${greeting(author)}\n\nThanks a lot for contributing! Your pull request is nearly ready. We found ${errors.length} ${issueLabel} that could be improved to match our [contribution guidelines](${contributingUrl}):\n\n${details}\n\nPlease update the highlighted ${issueLabel}, and this check will run again automatically. If you believe a warning does not apply, feel free to explain why in a comment and a maintainer will take a look.`;
 }
 
 async function fetchReadme(repo, sha, label) {
@@ -144,7 +166,13 @@ async function main() {
     validateReadme(baselineText)
   );
   const errors = filterErrorsToDiff(introducedErrors, readmeText, diffText);
-  fs.writeFileSync(outputPath, `${formatComment(errors, touchedLines.size > 0)}\n`);
+  fs.writeFileSync(
+    outputPath,
+    `${formatComment(errors, touchedLines.size > 0, process.env.PR_AUTHOR, {
+      readmeUrl: `https://github.com/${repo}/blob/${process.env.HEAD_SHA}/README.md`,
+      contributingUrl: `https://github.com/${repo}/blob/${process.env.BASE_SHA}/CONTRIBUTING.md`,
+    })}\n`
+  );
 
   if (errors.length > 0) {
     for (const error of errors) console.error(error);
@@ -163,8 +191,10 @@ if (require.main === module) {
 
 module.exports = {
   COMMENT_MARKER,
+  escapeHtml,
   filterErrorsToDiff,
   formatComment,
+  formatError,
   parseReadmeDiff,
   subtractBaselineErrors,
 };

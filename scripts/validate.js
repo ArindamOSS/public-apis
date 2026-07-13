@@ -160,7 +160,7 @@ function validateReadme(text) {
   let currentCategoryLine = 0;
   let entriesInCategory = [];
   let sawDividerRow = false; // the "| API | Description | ... |" header row precedes the divider and isn't data
-  const seenEntries = new Set(); // `${category}::${name.toLowerCase()}::${url}`
+  const entryOccurrences = new Map(); // `${name.toLowerCase()}::${url}` -> README locations
 
   function flushCategory() {
     if (currentCategory === null) return;
@@ -237,15 +237,23 @@ function validateReadme(text) {
       const linkMatch = LINK_CELL_RE.exec(cells[0]);
       const url = linkMatch ? linkMatch[2].trim() : "";
       entriesInCategory.push({ title, promoted: isPromotedUrl(url) });
-      const key = `${currentCategory}::${title.toLowerCase()}::${url}`;
-      if (seenEntries.has(key)) {
-        errors.push(fmt(lineNum, `duplicate entry "${title}" (${url}) in category "${currentCategory}"`));
-      }
-      seenEntries.add(key);
+      const key = `${title.toLowerCase()}::${url}`;
+      const occurrences = entryOccurrences.get(key) || [];
+      occurrences.push({ lineNum, title, url });
+      entryOccurrences.set(key, occurrences);
     }
   });
 
   flushCategory(); // the final category in the file, otherwise never checked
+
+  // Report every copy so a newly inserted duplicate is still attached to the
+  // changed line even when the original entry appears later in the README.
+  for (const occurrences of entryOccurrences.values()) {
+    if (occurrences.length < 2) continue;
+    for (const { lineNum, title, url } of occurrences) {
+      errors.push(fmt(lineNum, `duplicate entry "${title}" (${url})`));
+    }
+  }
 
   return errors;
 }

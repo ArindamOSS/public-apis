@@ -36,16 +36,16 @@ test("flags the last category in the file", () => {
   assert.ok(validateReadme(withCategory(rows)).some((e) => e.includes("minimum 3")));
 });
 
-test("flags a trailing API suffix but not hyphenated brand names", () => {
+test("flags API as the last word but allows API as part of a brand name", () => {
   const rows = [
     "| [Gmail API](https://example.com/a) | Desc one | No | Yes | No |",
-    "| [ip-api](https://example.com/b) | Desc two | No | Yes | No |",
-    "| [weather-api](https://example.com/c) | Desc three | No | Yes | No |",
+    "| [FastAPI](https://example.com/b) | Desc two | No | Yes | No |",
+    "| [ip-api](https://example.com/c) | Desc three | No | Yes | No |",
   ];
   const errors = validateReadme(withCategory(rows));
   assert.ok(errors.some((e) => e.includes('"Gmail API"')));
+  assert.ok(!errors.some((e) => e.includes('"FastAPI"')));
   assert.ok(!errors.some((e) => e.includes('"ip-api"')));
-  assert.ok(!errors.some((e) => e.includes('"weather-api"')));
 });
 
 test("flags an auth value missing backticks", () => {
@@ -68,7 +68,25 @@ test("flags a description over 100 characters", () => {
 
 test("flags a duplicate name and URL entry", () => {
   const rows = [...threeValidRows(), "| [A](https://example.com/a) | Again | No | Yes | No |"];
-  assert.ok(validateReadme(withCategory(rows)).some((e) => e.includes("duplicate entry")));
+  assert.equal(validateReadme(withCategory(rows)).filter((e) => e.includes("duplicate entry")).length, 2);
+});
+
+test("flags duplicate entries across categories", () => {
+  const readme = [
+    "## Index",
+    "* [Animals](#animals)",
+    "* [Books](#books)",
+    "### Animals",
+    "|:---|:---|:---|:---|:---|",
+    ...threeValidRows(),
+    "### Books",
+    "|:---|:---|:---|:---|:---|",
+    "| [A](https://example.com/a) | Duplicate | No | Yes | No |",
+    "| [D](https://example.com/d) | Desc four | No | Yes | No |",
+    "| [E](https://example.com/e) | Desc five | No | Yes | No |",
+  ].join("\n");
+
+  assert.equal(validateReadme(readme).filter((e) => e.includes("duplicate entry")).length, 2);
 });
 
 test("flags a category missing from the Index", () => {
