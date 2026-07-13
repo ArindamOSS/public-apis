@@ -29,4 +29,4 @@ npm run check-links -- README.md --duplicates-only
 - `links.js` and `row-parser.js` contain shared parsing and validation helpers.
 - `tests/` contains the Node test suite.
 
-GitHub Actions runs the same Node commands for pull requests, pushes to `master`, and scheduled link checks.
+GitHub Actions runs Node tests and diff-aware README validation for pull requests. A scheduled workflow checks all README links.
