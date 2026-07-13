@@ -8,6 +8,7 @@ Run these commands from the repository root:
 
 ```bash
 npm test
+npm run format -- README.md
 npm run validate -- README.md
 npm run check-links -- README.md
 npm run generate -- README.md dist
@@ -23,6 +24,7 @@ npm run check-links -- README.md --duplicates-only
 
 - `validate.js` validates the README category tables.
 - `validate-pr-readme.js` reports validation errors only for README lines changed by a pull request.
+- `format-readme.js` sorts API rows inside each category without changing surrounding Markdown.
 - `check-links.js` checks duplicate and unreachable links.
 - `check-pr-links.js` checks links added by a pull request.
 - `generate.js` writes `apis.json`, `apis.min.json`, and `category.json`.
