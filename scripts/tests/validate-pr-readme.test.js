@@ -4,8 +4,10 @@ const test = require("node:test");
 const assert = require("node:assert/strict");
 const {
   COMMENT_MARKER,
+  escapeHtml,
   filterErrorsToDiff,
   formatComment,
+  formatError,
   parseReadmeDiff,
   subtractBaselineErrors,
 } = require("../validate-pr-readme");
@@ -67,9 +69,43 @@ test("includes category-level errors when that category changed", () => {
 });
 
 test("formats a stable success comment", () => {
-  const comment = formatComment([], true);
+  const comment = formatComment([], true, "octocat");
   assert.ok(comment.startsWith(COMMENT_MARKER));
-  assert.ok(comment.includes("passed validation"));
+  assert.ok(comment.includes("Hi @octocat"));
+  assert.ok(comment.includes("follow our contribution guidelines"));
+  assert.ok(comment.includes("maintainers will review"));
+});
+
+test("formats polite, actionable issue guidance", () => {
+  const comment = formatComment(
+    [
+      "L42: description should not exceed 100 characters (currently 108)",
+      'L43: title "Example API" should not end with "API" — every entry here is an API',
+    ],
+    true,
+    "octocat",
+    {
+      readmeUrl: "https://github.com/example/repo/blob/abc123/README.md",
+      contributingUrl: "https://github.com/example/repo/blob/def456/CONTRIBUTING.md",
+    }
+  );
+
+  assert.ok(comment.includes("Thanks a lot for contributing"));
+  assert.ok(comment.includes("2 items that could be improved"));
+  assert.ok(comment.includes("README.md#L42"));
+  assert.ok(comment.includes("CONTRIBUTING.md"));
+  assert.ok(comment.includes("run again automatically"));
+});
+
+test("formats line-numbered errors as README links", () => {
+  assert.equal(
+    formatError("L12: description is empty"),
+    "- [README.md line 12](README.md#L12): <code>description is empty</code>"
+  );
+});
+
+test("escapes contributor-controlled text in validation comments", () => {
+  assert.equal(escapeHtml('title "<img> & API"'), 'title "&lt;img&gt; &amp; API"');
 });
 
 test("subtracts legacy errors even when their line numbers move", () => {
