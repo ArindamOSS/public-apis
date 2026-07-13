@@ -5,6 +5,7 @@ const CATEGORY_RE = /^### (.+)$/;
 // First cell of a row must be a markdown link: [Name](url)
 const LINK_CELL_RE = /^\[([^\]]+)\]\(([^)]+)\)$/;
 const SEPARATOR_CELL_RE = /^:?-+:?$/;
+const PROMOTED_CAMPAIGN_RE = /[?&]utm_campaign=public-apis-repo-best-sellers(?:[&#\s]|$)/i;
 
 function stripBackticks(s) {
   return s.replace(/`/g, "").trim();
@@ -28,6 +29,16 @@ function splitRowRaw(line) {
   return trimmed.split("|");
 }
 
+function isPromotedUrl(url) {
+  return PROMOTED_CAMPAIGN_RE.test(url);
+}
+
+function isPromotedRow(line) {
+  const [titleCell = ""] = splitRow(line);
+  const match = LINK_CELL_RE.exec(titleCell);
+  return Boolean(match && isPromotedUrl(match[2]));
+}
+
 module.exports = {
   CATEGORY_RE,
   LINK_CELL_RE,
@@ -36,4 +47,6 @@ module.exports = {
   parseBool,
   splitRow,
   splitRowRaw,
+  isPromotedUrl,
+  isPromotedRow,
 };

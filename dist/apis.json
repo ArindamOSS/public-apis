@@ -1784,6 +1784,15 @@
       "category": "Continuous Integration"
     },
     {
+      "name": "Coinlayer",
+      "description": "Real-time Crypto Currency Exchange Rates",
+      "auth": "apiKey",
+      "https": true,
+      "cors": "Unknown",
+      "url": "https://coinlayer.com?utm_source=Github&utm_medium=Referral&utm_campaign=Public-apis-repo-Best-sellers",
+      "category": "Cryptocurrency"
+    },
+    {
       "name": "0x",
       "description": "API for querying token and pool stats across various liquidity pools",
       "auth": "No",
@@ -2033,15 +2042,6 @@
       "https": true,
       "cors": "Unknown",
       "url": "https://coinigy.docs.apiary.io",
-      "category": "Cryptocurrency"
-    },
-    {
-      "name": "Coinlayer",
-      "description": "Real-time Crypto Currency Exchange Rates",
-      "auth": "apiKey",
-      "https": true,
-      "cors": "Unknown",
-      "url": "https://coinlayer.com?utm_source=Github&utm_medium=Referral&utm_campaign=Public-apis-repo-Best-sellers",
       "category": "Cryptocurrency"
     },
     {
@@ -2414,6 +2414,42 @@
       "category": "Cryptocurrency"
     },
     {
+      "name": "Currencylayer",
+      "description": "Exchange rates and currency conversion",
+      "auth": "apiKey",
+      "https": true,
+      "cors": "Unknown",
+      "url": "https://currencylayer.com?utm_source=Github&utm_medium=Referral&utm_campaign=Public-apis-repo-Best-sellers",
+      "category": "Currency Exchange"
+    },
+    {
+      "name": "Exchangerate.host",
+      "description": "Free foreign exchange & crypto rates API",
+      "auth": "No",
+      "https": true,
+      "cors": "Unknown",
+      "url": "https://exchangerate.host?utm_source=Github&utm_medium=Referral&utm_campaign=Public-apis-repo-Best-sellers",
+      "category": "Currency Exchange"
+    },
+    {
+      "name": "Exchangeratesapi.io",
+      "description": "Exchange rates with currency conversion",
+      "auth": "apiKey",
+      "https": true,
+      "cors": "Yes",
+      "url": "https://exchangeratesapi.io?utm_source=Github&utm_medium=Referral&utm_campaign=Public-apis-repo-Best-sellers",
+      "category": "Currency Exchange"
+    },
+    {
+      "name": "Fixer",
+      "description": "Exchange rates and currency conversion",
+      "auth": "apiKey",
+      "https": false,
+      "cors": "Unknown",
+      "url": "https://fixer.io?utm_source=Github&utm_medium=Referral&utm_campaign=Public-apis-repo-Best-sellers",
+      "category": "Currency Exchange"
+    },
+    {
       "name": "1Forge",
       "description": "Forex currency market data",
       "auth": "apiKey",
@@ -2459,15 +2495,6 @@
       "category": "Currency Exchange"
     },
     {
-      "name": "Currencylayer",
-      "description": "Exchange rates and currency conversion",
-      "auth": "apiKey",
-      "https": true,
-      "cors": "Unknown",
-      "url": "https://currencylayer.com?utm_source=Github&utm_medium=Referral&utm_campaign=Public-apis-repo-Best-sellers",
-      "category": "Currency Exchange"
-    },
-    {
       "name": "CurrencyScoop",
       "description": "Real-time and historical currency rates JSON API",
       "auth": "apiKey",
@@ -2510,33 +2537,6 @@
       "https": true,
       "cors": "Unknown",
       "url": "https://exchangerate.dev/docs",
-      "category": "Currency Exchange"
-    },
-    {
-      "name": "Exchangerate.host",
-      "description": "Free foreign exchange & crypto rates API",
-      "auth": "No",
-      "https": true,
-      "cors": "Unknown",
-      "url": "https://exchangerate.host?utm_source=Github&utm_medium=Referral&utm_campaign=Public-apis-repo-Best-sellers",
-      "category": "Currency Exchange"
-    },
-    {
-      "name": "Exchangeratesapi.io",
-      "description": "Exchange rates with currency conversion",
-      "auth": "apiKey",
-      "https": true,
-      "cors": "Yes",
-      "url": "https://exchangeratesapi.io?utm_source=Github&utm_medium=Referral&utm_campaign=Public-apis-repo-Best-sellers",
-      "category": "Currency Exchange"
-    },
-    {
-      "name": "Fixer",
-      "description": "Exchange rates and currency conversion",
-      "auth": "apiKey",
-      "https": false,
-      "cors": "Unknown",
-      "url": "https://fixer.io?utm_source=Github&utm_medium=Referral&utm_campaign=Public-apis-repo-Best-sellers",
       "category": "Currency Exchange"
     },
     {
@@ -2594,6 +2594,15 @@
       "category": "Currency Exchange"
     },
     {
+      "name": "VATlayer",
+      "description": "VAT number validation",
+      "auth": "apiKey",
+      "https": true,
+      "cors": "Unknown",
+      "url": "https://vatlayer.com/?utm_source=Github&utm_medium=Referral&utm_campaign=Public-apis-repo-Best-sellers",
+      "category": "Data Validation"
+    },
+    {
       "name": "Lob.com",
       "description": "US Address Verification",
       "auth": "apiKey",
@@ -2648,13 +2657,13 @@
       "category": "Data Validation"
     },
     {
-      "name": "VATlayer",
-      "description": "VAT number validation",
-      "auth": "apiKey",
+      "name": "Userstack",
+      "description": "Secure User-Agent String Lookup JSON API",
+      "auth": "OAuth",
       "https": true,
       "cors": "Unknown",
-      "url": "https://vatlayer.com/?utm_source=Github&utm_medium=Referral&utm_campaign=Public-apis-repo-Best-sellers",
-      "category": "Data Validation"
+      "url": "https://userstack.com/?utm_source=Github&utm_medium=Referral&utm_campaign=Public-apis-repo-Best-sellers",
+      "category": "Development"
     },
     {
       "name": "24 Pull Requests",
@@ -3818,15 +3827,6 @@
       "category": "Development"
     },
     {
-      "name": "Userstack",
-      "description": "Secure User-Agent String Lookup JSON API",
-      "auth": "OAuth",
-      "https": true,
-      "cors": "Unknown",
-      "url": "https://userstack.com/?utm_source=Github&utm_medium=Referral&utm_campaign=Public-apis-repo-Best-sellers",
-      "category": "Development"
-    },
-    {
       "name": "Wandbox",
       "description": "Code compiler supporting 35+ languages mentioned at wandbox.org",
       "auth": "No",
@@ -4304,6 +4304,15 @@
       "category": "Documents & Productivity"
     },
     {
+      "name": "mailboxlayer",
+      "description": "Email address validation",
+      "auth": "apiKey",
+      "https": true,
+      "cors": "Unknown",
+      "url": "https://mailboxlayer.com?utm_source=Github&utm_medium=Referral&utm_campaign=Public-apis-repo-Best-sellers",
+      "category": "Email"
+    },
+    {
       "name": "Cloudmersive Validate",
       "description": "Validate email addresses, phone numbers, VAT numbers and domain names",
       "auth": "apiKey",
@@ -4409,15 +4418,6 @@
       "https": true,
       "cors": "Yes",
       "url": "https://docs.mail.tm",
-      "category": "Email"
-    },
-    {
-      "name": "mailboxlayer",
-      "description": "Email address validation",
-      "auth": "apiKey",
-      "https": true,
-      "cors": "Unknown",
-      "url": "https://mailboxlayer.com?utm_source=Github&utm_medium=Referral&utm_campaign=Public-apis-repo-Best-sellers",
       "category": "Email"
     },
     {
@@ -4826,6 +4826,15 @@
       "category": "Events"
     },
     {
+      "name": "Marketstack",
+      "description": "Real-Time, Intraday & Historical Market Data API",
+      "auth": "apiKey",
+      "https": true,
+      "cors": "Unknown",
+      "url": "https://marketstack.com/?utm_source=Github&utm_medium=Referral&utm_campaign=Public-apis-repo-Best-sellers",
+      "category": "Finance"
+    },
+    {
       "name": "Aletheia",
       "description": "Insider trading data, earnings call analysis, financial statements, and more",
       "auth": "apiKey",
@@ -5084,15 +5093,6 @@
       "https": true,
       "cors": "Unknown",
       "url": "https://docs.klarna.com/klarna-payments/api/payments-api/",
-      "category": "Finance"
-    },
-    {
-      "name": "Marketstack",
-      "description": "Real-Time, Intraday & Historical Market Data API",
-      "auth": "apiKey",
-      "https": true,
-      "cors": "Unknown",
-      "url": "https://marketstack.com/?utm_source=Github&utm_medium=Referral&utm_campaign=Public-apis-repo-Best-sellers",
       "category": "Finance"
     },
     {
@@ -6410,6 +6410,24 @@
       "category": "Games & Comics"
     },
     {
+      "name": "IPstack",
+      "description": "Locate and identify website visitors by IP address",
+      "auth": "apiKey",
+      "https": true,
+      "cors": "Unknown",
+      "url": "https://ipstack.com/?utm_source=Github&utm_medium=Referral&utm_campaign=Public-apis-repo-Best-sellers",
+      "category": "Geocoding"
+    },
+    {
+      "name": "ipapi.com",
+      "description": "Real-time Geolocation & Reverse IP Lookup REST API",
+      "auth": "apiKey",
+      "https": true,
+      "cors": "Unknown",
+      "url": "https://ipapi.com/?utm_source=Github&utm_medium=Referral&utm_campaign=Public-apis-repo-Best-sellers",
+      "category": "Geocoding"
+    },
+    {
       "name": "Actinia Grass GIS",
       "description": "Actinia is an open source REST API for geographical data that uses GRASS GIS",
       "auth": "apiKey",
@@ -6851,15 +6869,6 @@
       "category": "Geocoding"
     },
     {
-      "name": "ipapi.com",
-      "description": "Real-time Geolocation & Reverse IP Lookup REST API",
-      "auth": "apiKey",
-      "https": true,
-      "cors": "Unknown",
-      "url": "https://ipapi.com/?utm_source=Github&utm_medium=Referral&utm_campaign=Public-apis-repo-Best-sellers",
-      "category": "Geocoding"
-    },
-    {
       "name": "IPGEO",
       "description": "Unlimited free IP Address API with useful information",
       "auth": "No",
@@ -6884,15 +6893,6 @@
       "https": true,
       "cors": "Unknown",
       "url": "https://www.ipinfodb.com/api",
-      "category": "Geocoding"
-    },
-    {
-      "name": "IPstack",
-      "description": "Locate and identify website visitors by IP address",
-      "auth": "apiKey",
-      "https": true,
-      "cors": "Unknown",
-      "url": "https://ipstack.com/?utm_source=Github&utm_medium=Referral&utm_campaign=Public-apis-repo-Best-sellers",
       "category": "Geocoding"
     },
     {
@@ -9209,6 +9209,15 @@
       "category": "Music"
     },
     {
+      "name": "Mediastack",
+      "description": "Free, Simple REST API for Live News & Blog Articles",
+      "auth": "apiKey",
+      "https": true,
+      "cors": "Unknown",
+      "url": "https://mediastack.com?utm_source=Github&utm_medium=Referral&utm_campaign=Public-apis-repo-Best-sellers",
+      "category": "News"
+    },
+    {
       "name": "Associated Press",
       "description": "Search for news and metadata from Associated Press",
       "auth": "apiKey",
@@ -9287,15 +9296,6 @@
       "https": true,
       "cors": "Yes",
       "url": "https://www.marketaux.com/",
-      "category": "News"
-    },
-    {
-      "name": "Mediastack",
-      "description": "Free, Simple REST API for Live News & Blog Articles",
-      "auth": "apiKey",
-      "https": true,
-      "cors": "Unknown",
-      "url": "https://mediastack.com?utm_source=Github&utm_medium=Referral&utm_campaign=Public-apis-repo-Best-sellers",
       "category": "News"
     },
     {
@@ -10145,6 +10145,15 @@
       "category": "Personality"
     },
     {
+      "name": "Numverify",
+      "description": "Phone number validation",
+      "auth": "apiKey",
+      "https": true,
+      "cors": "Unknown",
+      "url": "https://numverify.com?utm_source=Github&utm_medium=Referral&utm_campaign=Public-apis-repo-Best-sellers",
+      "category": "Phone"
+    },
+    {
       "name": "Cloudmersive Validate",
       "description": "Validate international phone numbers",
       "auth": "apiKey",
@@ -10160,15 +10169,6 @@
       "https": true,
       "cors": "Unknown",
       "url": "https://numlookupapi.com",
-      "category": "Phone"
-    },
-    {
-      "name": "Numverify",
-      "description": "Phone number validation",
-      "auth": "apiKey",
-      "https": true,
-      "cors": "Unknown",
-      "url": "https://numverify.com?utm_source=Github&utm_medium=Referral&utm_campaign=Public-apis-repo-Best-sellers",
       "category": "Phone"
     },
     {
@@ -10206,6 +10206,15 @@
       "cors": "Unknown",
       "url": "https://verirouteintel.com",
       "category": "Phone"
+    },
+    {
+      "name": "Screenshotlayer",
+      "description": "URL to screenshot",
+      "auth": "No",
+      "https": true,
+      "cors": "Unknown",
+      "url": "https://screenshotlayer.com?utm_source=Github&utm_medium=Referral&utm_campaign=Public-apis-repo-Best-sellers",
+      "category": "Photography"
     },
     {
       "name": "APITemplate.io",
@@ -10412,15 +10421,6 @@
       "https": false,
       "cors": "Unknown",
       "url": "https://resmush.it/api",
-      "category": "Photography"
-    },
-    {
-      "name": "Screenshotlayer",
-      "description": "URL to screenshot",
-      "auth": "No",
-      "https": true,
-      "cors": "Unknown",
-      "url": "https://screenshotlayer.com?utm_source=Github&utm_medium=Referral&utm_campaign=Public-apis-repo-Best-sellers",
       "category": "Photography"
     },
     {
@@ -13952,6 +13952,15 @@
       "category": "Video"
     },
     {
+      "name": "Weatherstack",
+      "description": "Real-Time & Historical World Weather Data API",
+      "auth": "apiKey",
+      "https": true,
+      "cors": "Unknown",
+      "url": "https://weatherstack.com/?utm_source=Github&utm_medium=Referral&utm_campaign=Public-apis-repo-Best-sellers",
+      "category": "Weather"
+    },
+    {
       "name": "7Timer!",
       "description": "Weather, especially for Astroweather",
       "auth": "No",
@@ -14228,15 +14237,6 @@
       "https": true,
       "cors": "Unknown",
       "url": "https://www.weatherbit.io/api",
-      "category": "Weather"
-    },
-    {
-      "name": "Weatherstack",
-      "description": "Real-Time & Historical World Weather Data API",
-      "auth": "apiKey",
-      "https": true,
-      "cors": "Unknown",
-      "url": "https://weatherstack.com/?utm_source=Github&utm_medium=Referral&utm_campaign=Public-apis-repo-Best-sellers",
       "category": "Weather"
     },
     {

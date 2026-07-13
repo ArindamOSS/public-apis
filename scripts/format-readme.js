@@ -3,7 +3,13 @@
 
 const fs = require("fs");
 const path = require("path");
-const { CATEGORY_RE, LINK_CELL_RE, SEPARATOR_CELL_RE, splitRow } = require("./row-parser");
+const {
+  CATEGORY_RE,
+  LINK_CELL_RE,
+  SEPARATOR_CELL_RE,
+  splitRow,
+  isPromotedRow,
+} = require("./row-parser");
 
 const README_PATH = process.argv[2] || path.join(__dirname, "..", "README.md");
 
@@ -40,7 +46,11 @@ function sortCategoryRows(text) {
     let end = start;
     while (end < lines.length && lines[end].trim().startsWith("|")) end += 1;
 
-    const sorted = lines.slice(start, end).sort(compareRows);
+    const rows = lines.slice(start, end);
+    // Paid placements are intentionally pinned above the alphabetical list.
+    // Array#filter preserves their configured order; only organic rows sort.
+    const promoted = rows.filter(isPromotedRow);
+    const sorted = [...promoted, ...rows.filter((row) => !isPromotedRow(row)).sort(compareRows)];
     lines.splice(start, sorted.length, ...sorted);
     index = end - 1;
   }

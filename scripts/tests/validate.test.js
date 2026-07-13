@@ -93,3 +93,28 @@ test("flags a populated extra table column", () => {
   ];
   assert.ok(validateReadme(withCategory(rows)).some((e) => e.includes("columns")));
 });
+
+test("allows promoted rows above an alphabetized organic list", () => {
+  const rows = [
+    "| [Zebra](https://example.com/z?utm_campaign=Public-apis-repo-Best-sellers) | Paid | No | Yes | No |",
+    ...threeValidRows(),
+  ];
+  assert.deepEqual(validateReadme(withCategory(rows)), []);
+});
+
+test("flags a promoted row below an organic entry", () => {
+  const rows = [
+    "| [A](https://example.com/a) | Desc one | No | Yes | No |",
+    "| [Zebra](https://example.com/z?utm_campaign=Public-apis-repo-Best-sellers) | Paid | No | Yes | No |",
+    "| [B](https://example.com/b) | Desc two | No | Yes | No |",
+  ];
+  assert.ok(validateReadme(withCategory(rows)).some((e) => e.includes("promoted entry below organic")));
+});
+
+test("does not exempt an unrelated UTM link from alphabetical order", () => {
+  const rows = [
+    "| [Zebra](https://example.com/z?utm_source=public-apis) | Organic | No | Yes | No |",
+    ...threeValidRows(),
+  ];
+  assert.ok(validateReadme(withCategory(rows)).some((e) => e.includes("not in alphabetical order")));
+});

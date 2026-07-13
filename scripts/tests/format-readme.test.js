@@ -30,3 +30,26 @@ test("formatting is idempotent", () => {
   const once = sortCategoryRows(unsorted);
   assert.equal(sortCategoryRows(once), once);
 });
+
+test("pins promoted rows in their configured order and sorts only organic rows", () => {
+  const readme = [
+    "### Animals",
+    "API | Description | Auth | HTTPS | CORS |",
+    "|:---|:---|:---|:---|:---|",
+    "| [Zebra](https://example.com/z?utm_campaign=Public-apis-repo-Best-sellers) | Paid one | No | Yes | No |",
+    "| [Yak](https://example.com/y?utm_campaign=Public-apis-repo-Best-sellers) | Paid two | No | Yes | No |",
+    "| [Wolf](https://example.com/w) | Organic two | No | Yes | No |",
+    "| [Ant](https://example.com/a) | Organic one | No | Yes | No |",
+  ].join("\n");
+  const formatted = sortCategoryRows(readme);
+
+  assert.ok(formatted.indexOf("[Zebra]") < formatted.indexOf("[Yak]"));
+  assert.ok(formatted.indexOf("[Yak]") < formatted.indexOf("[Ant]"));
+  assert.ok(formatted.indexOf("[Ant]") < formatted.indexOf("[Wolf]"));
+});
+
+test("does not pin unrelated UTM links", () => {
+  const readme = unsorted.replace("https://example.com/z", "https://example.com/z?utm_source=public-apis");
+  const formatted = sortCategoryRows(readme);
+  assert.ok(formatted.indexOf("[Ant]") < formatted.indexOf("[Zebra]"));
+});

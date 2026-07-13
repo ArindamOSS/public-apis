@@ -13,6 +13,7 @@ const {
   stripBackticks,
   splitRow,
   splitRowRaw,
+  isPromotedUrl,
 } = require("./row-parser");
 
 const README_PATH = process.argv[2] || path.join(__dirname, "..", "README.md");
@@ -171,7 +172,18 @@ function validateReadme(text) {
         )
       );
     }
-    const titles = entriesInCategory.map((t) => t.toLowerCase());
+    const firstOrganic = entriesInCategory.findIndex((entry) => !entry.promoted);
+    if (
+      firstOrganic !== -1 &&
+      entriesInCategory.slice(firstOrganic + 1).some((entry) => entry.promoted)
+    ) {
+      errors.push(
+        fmt(currentCategoryLine, `category "${currentCategory}" has a promoted entry below organic entries`)
+      );
+    }
+    const titles = entriesInCategory
+      .filter((entry) => !entry.promoted)
+      .map((entry) => entry.title.toLowerCase());
     const sorted = [...titles].sort();
     if (JSON.stringify(titles) !== JSON.stringify(sorted)) {
       errors.push(fmt(currentCategoryLine, `category "${currentCategory}" is not in alphabetical order`));
@@ -222,9 +234,9 @@ function validateReadme(text) {
     errors.push(...checkCors(lineNum, cors));
 
     if (title) {
-      entriesInCategory.push(title);
       const linkMatch = LINK_CELL_RE.exec(cells[0]);
       const url = linkMatch ? linkMatch[2].trim() : "";
+      entriesInCategory.push({ title, promoted: isPromotedUrl(url) });
       const key = `${currentCategory}::${title.toLowerCase()}::${url}`;
       if (seenEntries.has(key)) {
         errors.push(fmt(lineNum, `duplicate entry "${title}" (${url}) in category "${currentCategory}"`));
