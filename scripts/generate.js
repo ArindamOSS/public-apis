@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-// Parses README.md's category tables into apis.json / apis.min.json / category.json.
+// Parses README.md's category tables into the website backend's JSON datasets.
 "use strict";
 
 const fs = require("fs");
@@ -14,7 +14,7 @@ const {
 } = require("./row-parser");
 
 const README_PATH = process.argv[2] || path.join(__dirname, "..", "README.md");
-const OUT_DIR = process.argv[3] || path.join(__dirname, "..", "dist");
+const OUT_DIR = process.argv[3] || path.join(__dirname, "..", "data");
 
 // Mirrors GitHub's markdown heading-anchor algorithm, so a category's slug
 // matches the #anchor the README's own "## Index" section links to
@@ -83,19 +83,17 @@ function main() {
   fs.mkdirSync(OUT_DIR, { recursive: true });
 
   const apisJson = JSON.stringify({ count: apis.length, entries: apis }, null, 2);
-  const apisMinJson = JSON.stringify({ count: apis.length, entries: apis });
-  const categoryJson = JSON.stringify(
+  const categoriesJson = JSON.stringify(
     { count: categories.length, totalApis: apis.length, categories },
     null,
     2
   );
 
   fs.writeFileSync(path.join(OUT_DIR, "apis.json"), apisJson + "\n");
-  fs.writeFileSync(path.join(OUT_DIR, "apis.min.json"), apisMinJson);
-  fs.writeFileSync(path.join(OUT_DIR, "category.json"), categoryJson + "\n");
+  fs.writeFileSync(path.join(OUT_DIR, "categories.json"), categoriesJson + "\n");
 
   console.log(`Parsed ${apis.length} APIs across ${categories.length} categories.`);
-  console.log(`Wrote apis.json, apis.min.json, category.json to ${OUT_DIR}`);
+  console.log(`Wrote apis.json and categories.json to ${OUT_DIR}`);
 }
 
 if (require.main === module) main();

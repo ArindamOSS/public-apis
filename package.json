@@ -2,7 +2,7 @@
   "name": "public-apis-json-service",
   "version": "1.0.0",
   "private": true,
-  "description": "Parses public-apis/public-apis README.md into apis.json, apis.min.json, and category.json",
+  "description": "Parses public-apis/public-apis README.md into website-ready API and category datasets",
   "scripts": {
     "format": "node scripts/format-readme.js",
     "generate": "node scripts/generate.js",

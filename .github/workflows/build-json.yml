@@ -6,6 +6,7 @@ on:
     paths:
       - "README.md"
       - "scripts/generate.js"
+      - "scripts/row-parser.js"
 
 
 permissions:
@@ -29,11 +30,11 @@ jobs:
         with:
           node-version: "20"
 
-      - name: Generate apis.json / apis.min.json / category.json
-        run: node scripts/generate.js README.md dist
+      - name: Generate website backend data
+        run: node scripts/generate.js README.md data
 
       - name: Commit generated JSON if changed
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
-          commit_message: "chore: regenerate apis.json / category.json from README.md"
-          file_pattern: "dist/*.json"
+          commit_message: "chore: regenerate website data from README.md"
+          file_pattern: "data/*.json"
