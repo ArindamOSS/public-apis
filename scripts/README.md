@@ -22,6 +22,7 @@ npm run check-links -- README.md --duplicates-only
 ## Files
 
 - `validate.js` validates the README category tables.
+- `validate-pr-readme.js` reports validation errors only for README lines changed by a pull request.
 - `check-links.js` checks duplicate and unreachable links.
 - `check-pr-links.js` checks links added by a pull request.
 - `generate.js` writes `apis.json`, `apis.min.json`, and `category.json`.

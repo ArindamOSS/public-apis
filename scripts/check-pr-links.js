@@ -73,4 +73,4 @@ if (require.main === module) {
   });
 }
 
-module.exports = { extractAddedLines };
+module.exports = { extractAddedLines, fetchDiff };
