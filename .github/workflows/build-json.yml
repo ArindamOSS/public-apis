@@ -2,7 +2,7 @@ name: Build JSON from README
 
 on:
   push:
-    branches: [ master ]
+    branches: [master]
     paths:
       - "README.md"
       - "scripts/generate.js"

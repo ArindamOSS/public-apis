@@ -5,10 +5,14 @@ on:
     branches: [master]
     paths:
       - "README.md"
+      - "scripts/**"
+      - "package.json"
   push:
     branches: [master]
     paths:
       - "README.md"
+      - "scripts/**"
+      - "package.json"
 
 permissions:
   contents: read
@@ -26,6 +30,9 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: "20"
+
+      - name: Run JavaScript tests
+        run: npm test
 
       - name: Validate README.md format
         run: node scripts/validate.js README.md
