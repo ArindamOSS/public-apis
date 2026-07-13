@@ -1,13 +1,7 @@
 #!/usr/bin/env node
 // Validates README.md's category tables against CONTRIBUTING.md rules.
-// Fixes several gaps/bugs found in the upstream scripts/validate/format.py:
-//   - "no TLD in the API name" rule was never checked at all
-//   - trailing-"API" check only matched an exact " API" suffix (broke on
-//     trailing punctuation/whitespace, e.g. "Gmail API.")
-//   - empty description crashed the whole run (description[0] on "")
-//   - the LAST category in the file was never checked for minimum entries
-//     (the check only ran when a *new* category header was encountered)
-//   - no duplicate-entry (name+url) detection
+// Includes checks for trailing "API" names, empty descriptions, final-category
+// entry counts, and duplicate name-and-URL entries.
 "use strict";
 
 const fs = require("fs");

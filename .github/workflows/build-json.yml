@@ -10,8 +10,6 @@ on:
 
 permissions:
   contents: write
-  pages: write
-  id-token: write
 
 concurrency:
   group: build-json
@@ -39,8 +37,3 @@ jobs:
         with:
           commit_message: "chore: regenerate apis.json / category.json from README.md"
           file_pattern: "dist/*.json"
-
-      - name: Upload Pages artifact
-        uses: actions/upload-pages-artifact@v3
-        with:
-          path: dist

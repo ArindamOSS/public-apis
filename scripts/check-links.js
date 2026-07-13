@@ -1,6 +1,6 @@
 #!/usr/bin/env node
-// JS port of `scripts/validate/links.py`'s CLI: finds every link in the
-// README (from "## Index" onward), flags duplicates, and — unless
+// Finds every link in the README (from "## Index" onward), flags
+// duplicates, and — unless
 // --duplicates-only is passed — live-checks each one over HTTP.
 "use strict";
 

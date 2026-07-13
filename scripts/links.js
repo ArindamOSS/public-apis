@@ -1,11 +1,10 @@
-// JS port of the upstream scripts/validate/links.py: extracts links, flags
-// duplicates, and (optionally) live-checks each URL.
+// Extracts links, flags duplicates, and optionally live-checks each URL.
 "use strict";
 
 const fs = require("fs");
 
-// Same shape as the Python regex: scheme://, www., or bare "domain.tld/"
-// followed by a run of non-whitespace/non-bracket characters.
+// Accepts scheme://, www., or bare "domain.tld/" links followed by a run
+// of non-whitespace/non-bracket characters.
 const LINK_RE =
   /(?:https?:\/\/|www\d{0,3}[.]|[a-z0-9.-]+[.][a-z]{2,4}\/)(?:[^\s()<>]+|\([^\s()<>]+\))+(?:\([^\s()<>]+\)|[^\s`!()[\]{};:'".,<>?«»""''])/gi;
 
